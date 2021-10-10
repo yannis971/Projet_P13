@@ -26,6 +26,12 @@ class Address(models.Model):
         """
         return f"{self.number} {self.street}"
 
+    class Meta:
+        """
+        Meta class customized to pluralize the table's name
+        """
+        verbose_name_plural = "addresses"
+
 
 class Letting(models.Model):
     """
