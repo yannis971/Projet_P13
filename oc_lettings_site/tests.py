@@ -19,7 +19,7 @@ def test_dummy():
 @pytest.mark.parametrize(
     "url_name, template_name",
     [
-        ("index", "index.html"),
+        ("oc_lettings_site:index", "oc_lettings_site/index.html"),
     ],
 )
 def test_index_views(url_name, template_name, client):
