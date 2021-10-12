@@ -2,6 +2,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Projet_P13.settings')
 
 application = get_asgi_application()

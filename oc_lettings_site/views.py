@@ -17,4 +17,4 @@ def index(request):
     :param request:
     :return: template index.html
     """
-    return render(request, "index.html")
+    return render(request, "oc_lettings_site/index.html")
