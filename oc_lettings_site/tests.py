@@ -30,3 +30,4 @@ def test_index_views(url_name, template_name, client):
     response = client.get(url)
     assert response.status_code == 200
     assertTemplateUsed(response, template_name)
+    assert b'<title>Holiday Homes</title>' in response.content
