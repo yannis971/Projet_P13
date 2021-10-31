@@ -9,4 +9,5 @@ class OCLettingsSiteConfig(AppConfig):
     """
     OCLettingsSiteConfig
     """
-    name = 'oc_lettings_site'
+
+    name = "oc_lettings_site"

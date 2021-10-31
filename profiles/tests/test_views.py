@@ -4,6 +4,7 @@ Created by : Yannis Saliniere
 """
 from django.test import TestCase
 from django.urls import reverse
+
 from profiles.models import Profile, User
 
 

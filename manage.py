@@ -3,7 +3,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Projet_P13.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'projet_p13.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

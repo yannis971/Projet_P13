@@ -3,6 +3,7 @@ Module : views.py
 Created by : Yannis Saliniere
 """
 from django.shortcuts import render
+
 from .models import Letting
 
 
