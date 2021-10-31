@@ -1,0 +1,29 @@
+version: 2.1
+orbs:
+  python: circleci/python@1.2
+jobs:
+  build-lint-test: 
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Lint
+          # This assumes black, isort and flake8 are installed via the install-package step above
+          command: |
+            black . --check --config black.cfg
+            isort . --check
+            flake8 .
+      - run:
+          name: Run tests
+          # This assumes pytest is installed via the install-package step above
+          command: pytest  
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  sample: 
+    jobs:
+      - build-lint-test
