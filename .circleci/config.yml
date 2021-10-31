@@ -25,6 +25,26 @@ jobs:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command: pytest
+
+  build-and-push-docker-image:
+    docker:
+      - image: cimg/python:3.8
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.6
+          docker_layer_caching: false
+      # build and push Docker image
+      - run: |
+          TAG=$CIRCLE_SHA1
+          docker build -t yannis971/projet_p13:$TAG .
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker tag yannis971/projet_p13:$TAG $DOCKER_USER/projet_p13:$TAG
+          docker push $DOCKER_USER/projet_p13:$TAG
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -32,3 +52,9 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-lint-test
+      - build-and-push-docker-image:
+         filters: 
+           branches:
+             only: main
+         requires:
+           - build-lint-test
