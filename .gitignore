@@ -2,3 +2,5 @@
 *.pyc
 venv
 .idea/
+projet_p13/.env
+static/

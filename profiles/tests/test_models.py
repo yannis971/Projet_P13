@@ -3,6 +3,7 @@ Module : test_models.py
 Created by : Yannis Saliniere
 """
 from django.test import TestCase
+
 from profiles.models import Profile, User
 
 

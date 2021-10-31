@@ -4,7 +4,7 @@ Created by : Yannis Saliniere
 """
 from django.shortcuts import render
 
-from . models import Profile
+from .models import Profile
 
 
 def index(request):
