@@ -176,7 +176,8 @@ if AMAZON_STORAGE and django_server_type == "production":
     }
     AWS_LOCATION = "static"
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
-    STATICFILES_DIR = Path.joinpath(BASE_DIR, "static")
 else:
     STATIC_URL = "/static/"
-    STATIC_ROOT = Path.joinpath(BASE_DIR, "static")
+
+STATIC_ROOT = Path.joinpath(BASE_DIR, "static")
+STATICFILES_DIR = Path.joinpath(BASE_DIR, "static")
