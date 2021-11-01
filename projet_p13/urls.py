@@ -13,6 +13,11 @@ urlpatterns = [
     path("profiles/", include("profiles.urls", namespace="profiles")),
     path("admin/", admin.site.urls),
 ]
+"""
+handler403 = "oc_lettings_site.views.my_custom_permission_denied_view"
+handler404 = 'oc_lettings_site.views.handler404'
+handler500 = "oc_lettings_site.views.my_custom_error_view"
+"""
 
 if (
     settings.DEBUG or settings.DJANGO_SERVER_TYPE == "local"

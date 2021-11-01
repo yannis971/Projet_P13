@@ -2,7 +2,8 @@
 Module : views.py
 Created by : Yannis Saliniere
 """
-from django.shortcuts import render
+from django.shortcuts import Http404, render
+from sentry_sdk import capture_exception
 
 from .models import Profile
 
@@ -25,6 +26,10 @@ def profile(request, username):
     :param username: the username of the profile retrieved
     :return: template profile.html
     """
-    profile = Profile.objects.get(user__username=username)
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except Profile.DoesNotExist as profile_exception:
+        capture_exception(profile_exception)
+        raise Http404(f"No Profile matches the given query : user__username={username}")
     context = {"profile": profile}
     return render(request, "profiles/profile.html", context)

@@ -6,6 +6,8 @@ import os
 from pathlib import Path
 
 import environ
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -107,8 +109,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGGING_CONFIG = None
 
 # Get loglevel from env
-LOGLEVEL = os.getenv("DJANGO_LOGLEVEL", "info").upper()
-
+# LOGLEVEL = os.getenv("DJANGO_LOGLEVEL", "info").upper()
+"""
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -133,6 +135,7 @@ LOGGING = {
         },
     },
 }
+"""
 
 django_server_type = os.getenv(key="DJANGO_SERVER_TYPE", default=None)
 
@@ -180,3 +183,18 @@ if AMAZON_STORAGE and django_server_type == "production":
 else:
     STATIC_URL = "/static/"
     STATIC_ROOT = Path.joinpath(BASE_DIR, "static")
+
+# Sentry
+sentry_sdk.init(
+    dsn=env("SENTRY_SDK_DSN"),
+    integrations=[DjangoIntegration()],
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=env("SENTRY_TRACES_SAMPLE_RATE"),
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True,
+)
+
+# SENTRY_ISSUES_URL = env("SENTRY_ISSUES_URL")
