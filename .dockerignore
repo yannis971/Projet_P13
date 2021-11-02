@@ -3,3 +3,4 @@ venv/
 **/__pycache__
 *.pyc
 static/
+projet_p13/.env

@@ -161,9 +161,9 @@ DEBUG = env("DEBUG", default=False)
 
 ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", default="*").split(",")
 
-AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", None)
-AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", None)
-AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", None)
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default=None)
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", default=None)
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", default=None)
 
 AMAZON_STORAGE = bool(
     AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY and AWS_STORAGE_BUCKET_NAME
@@ -188,7 +188,7 @@ STATICFILES_DIR = Path.joinpath(BASE_DIR, "static")
 
 # Sentry
 sentry_sdk.init(
-    dsn=env("SENTRY_SDK_DSN", None),
+    dsn=env("SENTRY_SDK_DSN", default=None),
     integrations=[DjangoIntegration()],
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
