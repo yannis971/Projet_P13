@@ -39,8 +39,8 @@ jobs:
           docker_layer_caching: false
       # build and push Docker image
       - run: |
-          docker build -t yannis971/projet_p13:$CIRCLE_SHA1 .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker build -t yannis971/projet_p13:$CIRCLE_SHA1 .
           docker tag yannis971/projet_p13:$CIRCLE_SHA1 $DOCKER_USER/projet_p13:$CIRCLE_SHA1
           docker push $DOCKER_USER/projet_p13:$CIRCLE_SHA1
 
