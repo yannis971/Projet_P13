@@ -159,7 +159,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default=False)
 
-ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", default="*").split(",")
 
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", None)
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", None)
@@ -188,12 +188,12 @@ STATICFILES_DIR = Path.joinpath(BASE_DIR, "static")
 
 # Sentry
 sentry_sdk.init(
-    dsn=env("SENTRY_SDK_DSN"),
+    dsn=env("SENTRY_SDK_DSN", None),
     integrations=[DjangoIntegration()],
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     # We recommend adjusting this value in production.
-    traces_sample_rate=env("SENTRY_TRACES_SAMPLE_RATE"),
+    traces_sample_rate=env("SENTRY_TRACES_SAMPLE_RATE", default=1.0),
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True,
