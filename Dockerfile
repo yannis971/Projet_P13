@@ -14,6 +14,6 @@ RUN set -ex \
     && pip install --no-cache-dir -r /app/requirements.txt \
     && python manage.py makemigrations \
     && python manage.py migrate \
-    && python manage.py collectstatic
+    && python manage.py collectstatic --noinput
 
 ENTRYPOINT ["./gunicorn_starter.sh"]

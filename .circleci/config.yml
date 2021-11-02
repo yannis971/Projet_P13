@@ -59,6 +59,15 @@ jobs:
           set -ex
           sudo curl https://cli-assets.heroku.com/install.sh | sh
           echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
+          heroku apps:destroy --app=$HEROKU_APP_NAME --confirm=$HEROKU_APP_NAME
+          heroku apps:create $HEROKU_APP_NAME
+          heroku config:set DJANGO_ALLOWED_HOSTS=* DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY --app=$HEROKU_APP_NAME
+          heroku config:set DJANGO_SERVER_TYPE=$DJANGO_SERVER_TYPE --app=$HEROKU_APP_NAME
+          heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --app=$HEROKU_APP_NAME
+          heroku config:set AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --app=$HEROKU_APP_NAME
+          heroku config:set AWS_STORAGE_BUCKET_NAME=$AWS_STORAGE_BUCKET_NAME --app=$HEROKU_APP_NAME
+          heroku config:set SENTRY_SDK_DSN=$SENTRY_SDK_DSN --app=$HEROKU_APP_NAME
+          heroku config:set SENTRY_TRACES_SAMPLE_RATE=$SENTRY_TRACES_SAMPLE_RATE --app=$HEROKU_APP_NAME
           heroku maintenance:on --app=$HEROKU_APP_NAME
           docker pull $DOCKER_USER/projet_p13:$CIRCLE_SHA1
           docker tag $DOCKER_USER/projet_p13:$CIRCLE_SHA1 registry.heroku.com/$HEROKU_APP_NAME/web
