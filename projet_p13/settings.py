@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 import environ
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -107,8 +108,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGGING_CONFIG = None
 
 # Get loglevel from env
-LOGLEVEL = os.getenv("DJANGO_LOGLEVEL", "info").upper()
-
+# LOGLEVEL = os.getenv("DJANGO_LOGLEVEL", "info").upper()
+"""
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -133,6 +134,7 @@ LOGGING = {
         },
     },
 }
+"""
 
 django_server_type = os.getenv(key="DJANGO_SERVER_TYPE", default=None)
 
@@ -150,16 +152,16 @@ else:
     environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = env("DJANGO_SECRET_KEY", default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = env("DEBUG", default=False)
 
-ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", default="*").split(",")
 
-AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", None)
-AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", None)
-AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", None)
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default=None)
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", default=None)
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", default=None)
 
 AMAZON_STORAGE = bool(
     AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY and AWS_STORAGE_BUCKET_NAME
