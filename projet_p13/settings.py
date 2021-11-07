@@ -106,38 +106,6 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Clear prev config
-LOGGING_CONFIG = None
-
-# Get loglevel from env
-# LOGLEVEL = os.getenv("DJANGO_LOGLEVEL", "info").upper()
-"""
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "console": {
-            "format": "%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d \
-            %(thread)d %(message)s",
-        },
-    },
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-            "formatter": "console",
-        },
-    },
-    "loggers": {
-        "": {
-            "level": LOGLEVEL,
-            "handlers": [
-                "console",
-            ],
-        },
-    },
-}
-"""
-
 django_server_type = os.getenv(key="DJANGO_SERVER_TYPE", default=None)
 
 if django_server_type == "production":
