@@ -193,7 +193,14 @@ Pour créer ces variables d'environnement, il existe 2 méthodes :
 - 1) les créer à l'aide de commande `export` : `export NOM_VARIABLE=VALEUR_VARIABLE`
 - 2) créer un fichier `.env` dans le dossier `projet_p13`
 
-Je propose dans Google Drive un répertoire partagé dans lequel vous trouverez 2 fichiers (`.env_local` et `.env_production` prêts à l'emploi, il suffit de les recopier en le renommant `.env`). Me contacter (mail : yannis.saliniere@gmail.com) si vous souhaitez avoir ces fichiers.
+Je propose dans Google Drive un répertoire partagé dans lequel vous trouverez 2 fichiers prêts à l'emploi :
+
+- `.env_local` pour une configuration de test en local et
+- `.env_production` pour une configuration de production
+
+Il suffit de télécharger un des ces fichiers dans le dossier `projet_p13` ou se trouve le fichier `settings.py` puis le renommer `.env`.
+
+Me contacter (mail : yannis.saliniere@gmail.com) si vous souhaitez avoir accès à ces fichiers.
 
 Autrement, vous devrez créer les variables d'environnement avec les valeurs de votre choix.
 
