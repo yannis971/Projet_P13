@@ -238,7 +238,7 @@ Attention, il convient de lancer au préalable la commande `black` avant la comm
 
 Cette commande est à lancer après les commandes `black` et `isort`.
 
-#### 5.2) Tests
+#### 6.2) Tests
 
 Avant de lancer pour la première fois les tests en local (variable d'environnement DJANGO_SERVER_TYPE différent de production), vous devez "collecter" les ressources statiques du projet, en exécutant la commande suivante en étant positionné dans le dossier `projects/Projet_P13` :
 
@@ -277,7 +277,7 @@ La commande suivante permet de construire une image Docker du projet_p13 avec le
 Ici le paramètre `--env-file` permet de passer un fichier contenant les variables d'environnement.
 
 
-#### 7.1) Autres commandes
+#### 7.3) Autres commandes
 
 `docker ps` : lister les containers docker en cours d'exécution
 
@@ -287,12 +287,36 @@ Ici le paramètre `--env-file` permet de passer un fichier contenant les variabl
 
 `docker --help` ou `man docker` : obtenir de l'aide sur la commande `docker`
 
+### 8) Pipeline CI/CD dans CircleCI
 
-### 8) Licence
+Cliquez [ici](https://app.circleci.com/pipelines/github/yannis971/Projet_P13?invite=true) pour accéder au pipeline CI/CD du Projet_P13.
+
+![](images/circleci_pipeline.png)
+
+### 9) Dockerhub
+
+Cliquez [ici](https://hub.docker.com/r/yannissaliniere/projet_p13/tags) pour accéder aux images docker du projet_p13
+
+![](images/dockerhub_projet_p13.png)
+
+### 10) Quelques captures d'écran du site https://oc-lettings-001.herokuapp.com
+
+**Accueil**
+
+![](images/oc-lettings-001-home.png)
+
+
+**Panel d'administration**
+
+Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
+
+![](images/oc-lettings-001-login.png)
+
+### 11) Licence
 
 Le code de ce projet est sous licence libre **GNU GPL V3**
 
-### 9) Questions/Aide/Support
+### 12) Questions/Aide/Support
 
 En cas de problème ou pour toute question relative à ce projet, vous pouvez me contacter via l'un des canaux suivants :
 
