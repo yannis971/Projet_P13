@@ -312,11 +312,36 @@ Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
 
 ![](images/oc-lettings-001-login.png)
 
-### 11) Licence
+### 11) Monitoring dans Sentry
+
+**Capture d'écran Sentry**
+
+![](images/sentry_issues.png)
+
+**Zero Division Error**
+
+En accédant à l'URL https://oc-lettings-001.herokuapp.com/sentry-debug/ cela déclenche une exception (division par zéro) qui est capturée et tracée via le lien ci-dessous :
+
+https://sentry.io/share/issue/16db31f9cab347cdb6b9d16245a79a34/
+
+**Exception Letting.DoesNotExist**
+
+Exception levée lorsque l'utilisateur essaie d'accéder à un objet Letting inexistant dans la base de données.
+
+Lien public : https://sentry.io/share/issue/b611dbcb87194dddbcac96ad989e9c71/
+
+**Exception Profile.DoesNotExist**
+
+Exception levée lorsque l'utilisateur essaie d'accéder à un objet Profile inexistant dans la base de données.
+
+Lien public : https://sentry.io/share/issue/4eefdb03d76e44c594286d6d0382466e/
+
+
+### 12) Licence
 
 Le code de ce projet est sous licence libre **GNU GPL V3**
 
-### 12) Questions/Aide/Support
+### 13) Questions/Aide/Support
 
 En cas de problème ou pour toute question relative à ce projet, vous pouvez me contacter via l'un des canaux suivants :
 
