@@ -172,6 +172,7 @@ done
 - `DJANGO_SERVER_TYPE` : local pour serveur de test / production pour serveur de production
 - `DEBUG` : True/False
 - `DJANGO_ALLOWED_HOSTS`
+- `DJANGO_LOGLEVEL`
 
 ***Variables pour accéder au compartiment Amazon S3 où sont stockées les ressources statiques de l'application***
 
@@ -283,7 +284,6 @@ La commande suivante permet de construire une image Docker du projet_p13 avec le
 
 Ici le paramètre `--env-file` permet de passer un fichier contenant les variables d'environnement.
 
-
 #### 7.3) Autres commandes
 
 `docker ps` : lister les containers docker en cours d'exécution
@@ -294,19 +294,36 @@ Ici le paramètre `--env-file` permet de passer un fichier contenant les variabl
 
 `docker --help` ou `man docker` : obtenir de l'aide sur la commande `docker`
 
-### 8) Pipeline CI/CD dans CircleCI
+### 8) Déploiement sur Heroku 
+
+Le déploiement est automatisé dans le job `heroku-deploy` du pipeline CI/CD (voir le fichier 
+
+Il fait appel au script `heroku_deploy.sh` qui contient les commandes Heroku CLI pour déployer l'application sur Heroku.
+
+Ce script utilise des variables d'environnement définies dans les paramètres de configuration du projet CircleCI :
+- HEROKU_API_KEY : la clé de l'API pour accéder au registry Heroku
+- HEROKU_APP_NAME : correspond au nom de l'application dans Heroku
+- DOCKER_USER : Identifiant Docker
+- DOCKER_REPOSITORY : Nom du repository Docker
+- CIRCLE_SHA1 : le “hash”  de commit CircleCI
+- les variables préfixées AWS_ pour le stockage dans le compartiment Amazon S3 (voir paragraphe 5)
+- les variables préfixées SENTRY_ pour le monitoring dans Sentry (voir paragraphe 5)
+- les variables préfixées DJANGO_ (voir paragraphe 5) 
+
+
+### 9) Pipeline CI/CD dans CircleCI
 
 Cliquez [ici](https://app.circleci.com/pipelines/github/yannis971/Projet_P13?invite=true) pour accéder au pipeline CI/CD du Projet_P13.
 
 ![](images/circleci_pipeline.png)
 
-### 9) Dockerhub
+### 10) Dockerhub
 
 Cliquez [ici](https://hub.docker.com/r/yannissaliniere/projet_p13/tags) pour accéder aux images docker du projet_p13
 
 ![](images/dockerhub_projet_p13.png)
 
-### 10) Quelques captures d'écran du site https://oc-lettings-001.herokuapp.com
+### 11) Quelques captures d'écran du site https://oc-lettings-001.herokuapp.com
 
 **Accueil**
 
@@ -319,7 +336,7 @@ Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
 
 ![](images/oc-lettings-001-login.png)
 
-### 11) Monitoring dans Sentry
+### 12) Monitoring dans Sentry
 
 **Capture d'écran Sentry**
 
@@ -344,11 +361,11 @@ Exception levée lorsque l'utilisateur essaie d'accéder à un objet Profile ine
 Lien public : https://sentry.io/share/issue/4eefdb03d76e44c594286d6d0382466e/
 
 
-### 12) Licence
+### 13) Licence
 
 Le code de ce projet est sous licence libre **GNU GPL V3**
 
-### 13) Questions/Aide/Support
+### 14) Questions/Aide/Support
 
 En cas de problème ou pour toute question relative à ce projet, vous pouvez me contacter via l'un des canaux suivants :
 
