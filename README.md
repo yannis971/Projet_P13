@@ -296,7 +296,7 @@ Ici le paramètre `--env-file` permet de passer un fichier contenant les variabl
 
 ### 8) Déploiement sur Heroku 
 
-Le déploiement est automatisé dans le job `heroku-deploy` du pipeline CI/CD (voir le fichier 
+Le déploiement est automatisé dans le job `heroku-deploy` du pipeline CI/CD (voir le fichier `.circleci/config.yml`) 
 
 Il fait appel au script `heroku_deploy.sh` qui contient les commandes Heroku CLI pour déployer l'application sur Heroku.
 
@@ -338,7 +338,12 @@ Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
 
 ### 12) Monitoring dans Sentry
 
-**Capture d'écran Sentry**
+**Capture d'écran des issues dans Sentry**
+
+Le lien vers le panel des Issues du projet oc-lettings-001 est :
+
+https://sentry.io/organizations/yannis-saliniere/issues/?environment=production&project=6052806
+
 
 ![](images/sentry_issues.png)
 
